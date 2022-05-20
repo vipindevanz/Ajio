@@ -17,7 +17,10 @@ public class NavigationActivity extends AppCompatActivity {
         com.pns.ajio.databinding.ActivityNavigationBinding binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.ibBack.setOnClickListener(v -> startActivity(new Intent(NavigationActivity.this, HomeActivity.class)));
+        binding.ibBack.setOnClickListener(v -> {
+            startActivity(new Intent(NavigationActivity.this, HomeActivity.class));
+            finish();
+        });
         binding.ibHome.setOnClickListener(v -> startActivity(new Intent(NavigationActivity.this, HomeActivity.class)));
         binding.imgAjioLuxe.setOnClickListener(v -> startActivity(new Intent(NavigationActivity.this, HomeActivity.class)));
         binding.ibSearch.setOnClickListener(v -> startActivity(new Intent(NavigationActivity.this, HomeActivity.class)));

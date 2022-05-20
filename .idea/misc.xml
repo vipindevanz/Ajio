@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Ajio/app/src/main/res/drawable/gradient.xml" value="0.168" />
+        <entry key="..\:/Ajio/app/src/main/res/drawable/ic_notification.xml" value="0.168" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/activity_books.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/activity_home.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/activity_product.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/activity_splash_screen.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/book_item_layout.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/fragment_home.xml" value="0.185546875" />
+        <entry key="..\:/Ajio/app/src/main/res/layout/product_item_layout.xml" value="0.185546875" />
         <entry key="..\:/Users/offic/AndroidStudioProjects/Ajiof/app/src/main/res/layout/product_item_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/ok/app/src/main/res/drawable/ic_baseline_contact_support_24.xml" value="0.189" />
         <entry key="..\:/ok/app/src/main/res/drawable/ic_chevron_right_.xml" value="0.189" />

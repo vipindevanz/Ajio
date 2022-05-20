@@ -35,12 +35,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                 if (snapshot.exists()) {
                     try {
-                        if (snapshot.getValue(Boolean.class)) {
+                        if (Boolean.TRUE.equals(snapshot.getValue(Boolean.class))) {
                             openHomeActivity();
                         } else {
                             mBinding.ins.setVisibility(View.VISIBLE);
                         }
-                    } catch (NullPointerException e){
+                    } catch (NullPointerException e) {
                         openHomeActivity();
                     }
                 }

@@ -49,10 +49,19 @@
                 android:id="@+id/img_bag"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
-                android:layout_alignParentEnd="true"
+                android:layout_toStartOf="@+id/img_affiliate"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dp_10"
                 android:src="@drawable/ic_bag_in"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/img_affiliate"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:adjustViewBounds="true"
+                android:layout_marginEnd="@dimen/dp_5"
+                android:layout_alignParentEnd="true"
                 tools:ignore="ContentDescription" />
 
         </RelativeLayout>

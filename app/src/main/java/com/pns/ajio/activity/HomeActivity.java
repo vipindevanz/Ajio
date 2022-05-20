@@ -12,12 +12,22 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.installations.Utils;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityHomeBinding;
 import com.pns.ajio.fragment.BottomSheetFragment;
 import com.pns.ajio.fragment.HomeFragment;
 import com.pns.ajio.fragment.StoresFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -36,9 +46,51 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 .commit();
 
         binding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, NavigationActivity.class)));
-        binding.imgNotification.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, NotificationActivity.class)));
+        binding.imgAffiliate.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, BooksActivity.class)));
         binding.imgDrop.setOnClickListener(v -> openBottomSheetDialog());
+        Glide.with(binding.imgAffiliate).load(R.drawable.spinning_circle).into(binding.imgAffiliate);
+        updateVisits();
+    }
 
+    private void updateVisits() {
+
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date d = new Date();
+        String date = formatter.format(d);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PREFS", MODE_PRIVATE);
+
+        if (!sharedPreferences.getString("date", "").equals(date)){
+
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Visits").child("home")
+                    .child(date.substring(6)).child(date.substring(3, 5)).child(date.substring(0, 2));
+
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            if (snapshot.exists()) {
+
+                                Integer visitors = snapshot.getValue(Integer.class);
+
+                                reference.setValue(visitors+1);
+
+                            } else {
+                                reference.setValue(1);
+                            }
+
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("date", date);
+                            editor.apply();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
     }
 
     @Override

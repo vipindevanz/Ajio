@@ -45,13 +45,21 @@
                 tools:ignore="ContentDescription" />
 
             <ImageView
+                android:id="@+id/img_affiliate"
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:adjustViewBounds="true"
+                android:layout_alignParentEnd="true"
+                tools:ignore="ContentDescription" />
+
+         <!--   <ImageView
                 android:id="@+id/img_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_notification"
                 tools:ignore="ContentDescription" />
-
+-->
         </RelativeLayout>
 
         <EditText

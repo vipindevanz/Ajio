@@ -1,24 +1,30 @@
 package com.pns.ajio.activity;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pns.ajio.adapter.ProductAdapter;
-import com.pns.ajio.databinding.ActivityProductBinding;
-import com.pns.ajio.model.ProductModel;
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pns.ajio.R;
+import com.pns.ajio.adapter.ProductAdapter;
+import com.pns.ajio.databinding.ActivityProductBinding;
+import com.pns.ajio.model.ProductModel;
 import com.razorpay.Checkout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
@@ -37,7 +43,17 @@ public class ProductActivity extends AppCompatActivity {
         Checkout.preload(getApplicationContext());
 
         initializeData();
+        openDialog();
         addData();
+    }
+
+    private void openDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setCancelable(false);
+        builder.setMessage(getResources().getString(R.string.product_ins));
+        builder.setPositiveButton("Ok", (dialogInterface, i) -> {});
+        builder.create();
+        builder.show();
     }
 
     private void initializeData() {
@@ -47,6 +63,8 @@ public class ProductActivity extends AppCompatActivity {
         mBinding.recyclerView.setAdapter(mAdapter);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("ProductDetails");
 
+        Glide.with(mBinding.imgAffiliate).load(R.drawable.spinning_circle).into(mBinding.imgAffiliate);
+        mBinding.imgAffiliate.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, BooksActivity.class)));
         mBinding.imgBag.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, BagActivity.class)));
         mBinding.imgFavourite.setOnClickListener(v -> {
             startActivity(new Intent(ProductActivity.this, WishlistActivity.class));
@@ -61,6 +79,7 @@ public class ProductActivity extends AppCompatActivity {
         // Retrieving product details from firebase
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -75,6 +94,7 @@ public class ProductActivity extends AppCompatActivity {
                         mList.add(model);
                     }
 
+                    Collections.shuffle(mList);
                     adjustView();
                     mAdapter.notifyDataSetChanged();
 

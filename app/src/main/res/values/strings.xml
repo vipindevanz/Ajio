@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AJIO</string>
+    <string name="app_name">Shop Karo</string>
     <string name="my_account">My Account</string>
     <string name="sign_in_join">Sign in / Join</string>
     <string name="return_creation_demo">Return Creation Demo</string>
@@ -35,7 +35,7 @@
     <string name="order_updates">Order Updates</string>
     <string name="promotions">Promotions</string>
     <string name="edit">Edit</string>
-    <string name="ajio">ajio</string>
+    <string name="ajio">Shop Karo</string>
     <string name="search_hint">Search by Product, Brand and more</string>
     <string name="shop_by">Shop by</string>
     <string name="women">Women</string>
@@ -60,4 +60,5 @@
     <string name="delivery_info">Delivery expected by Tomorrow</string>
     <string name="about">This is a project based application only\nApp Version 2.0.8</string>
     <string name="ins">Application is under maintenance\nPlease check back after some time.</string>
+    <string name="product_ins">Product displaying here can\'t be purchased\nYou can visit Books section clicking on spinning circle for making any real purchases</string>
 </resources>
