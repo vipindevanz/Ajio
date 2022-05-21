@@ -3,13 +3,18 @@ package com.pns.ajio.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -19,15 +24,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.installations.Utils;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityHomeBinding;
 import com.pns.ajio.fragment.BottomSheetFragment;
 import com.pns.ajio.fragment.HomeFragment;
 import com.pns.ajio.fragment.StoresFragment;
+import com.pns.ajio.model.Notification;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -50,6 +57,97 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         binding.imgDrop.setOnClickListener(v -> openBottomSheetDialog());
         Glide.with(binding.imgAffiliate).load(R.drawable.spinning_circle).into(binding.imgAffiliate);
         updateVisits();
+        showDialog();
+        checkNotifications();
+    }
+
+    private void checkNotifications() {
+
+        SharedPreferences preferences = getSharedPreferences("PRE", MODE_PRIVATE);
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+
+                    Notification notification = snapshot.getValue(Notification.class);
+
+                    if (notification == null) return;
+                    if (!preferences.getString("noti", "").equals(notification.getKey())) {
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this).setCancelable(false);
+                        AlertDialog dialog = builder.create();
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+                        View view = getLayoutInflater().inflate(R.layout.notification_layout, null);
+                        ImageView imageView = view.findViewById(R.id.notification_image);
+                        ImageView back = view.findViewById(R.id.notification_back);
+                        TextView textView = view.findViewById(R.id.notification_btn);
+
+                        Glide.with(imageView).load(notification.getImgUrl()).into(imageView);
+
+                        if (notification.getText().isEmpty()) {
+                            textView.setVisibility(View.GONE);
+                        } else {
+                            textView.setText(notification.getText());
+                        }
+
+                        view.setOnClickListener(v -> {
+
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("clicks", notification.getClicks() + 1);
+                            reference.updateChildren(map);
+
+                            dialog.cancel();
+
+                            if (notification.getContentUrl().isEmpty()) return;
+                            Intent intent = new Intent(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(notification.getContentUrl()));
+                            startActivity(intent);
+                        });
+
+
+                        dialog.setView(view);
+
+                        back.setOnClickListener(v -> dialog.cancel());
+
+                        dialog.create();
+                        dialog.show();
+
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("noti", notification.getKey());
+                        editor.apply();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void showDialog() {
+
+        SharedPreferences preferences = getSharedPreferences("PREF", MODE_PRIVATE);
+
+        if (preferences.getBoolean("isNotVisitedBooks", true)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this).setCancelable(false);
+            builder.setMessage(getResources().getString(R.string.product_ins));
+            builder.setPositiveButton("Ok", (dialogInterface, i) -> {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("isNotVisitedBooks", false);
+                editor.apply();
+                startActivity(new Intent(HomeActivity.this, BooksActivity.class));
+            });
+            builder.create();
+            builder.show();
+        }
     }
 
     private void updateVisits() {
@@ -61,35 +159,35 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREFS", MODE_PRIVATE);
 
-        if (!sharedPreferences.getString("date", "").equals(date)){
+        if (!sharedPreferences.getString("date", "").equals(date)) {
 
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Visits").child("home")
                     .child(date.substring(6)).child(date.substring(3, 5)).child(date.substring(0, 2));
 
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            if (snapshot.exists()) {
+                    if (snapshot.exists()) {
 
-                                Integer visitors = snapshot.getValue(Integer.class);
+                        Integer visitors = snapshot.getValue(Integer.class);
 
-                                reference.setValue(visitors+1);
+                        reference.setValue(visitors + 1);
 
-                            } else {
-                                reference.setValue(1);
-                            }
+                    } else {
+                        reference.setValue(1);
+                    }
 
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("date", date);
-                            editor.apply();
-                        }
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("date", date);
+                    editor.apply();
+                }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+                }
+            });
         }
     }
 

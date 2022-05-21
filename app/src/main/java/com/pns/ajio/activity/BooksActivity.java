@@ -69,9 +69,9 @@ public class BooksActivity extends AppCompatActivity {
                         mList.add(model);
                     }
 
-                    new ParticleSystem(BooksActivity.this, 50, R.drawable.spinning_circle, 8000)
-                            .setSpeedRange(0.2f, 0.5f)
-                            .oneShot(findViewById(R.id.results), 100);
+                    new ParticleSystem(BooksActivity.this, 30, R.drawable.sparkle, 8000)
+                            .setSpeedRange(0.1f, 1.0f)
+                            .oneShot(findViewById(R.id.sparkle), 30);
 
                     Collections.shuffle(mList);
 

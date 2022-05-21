@@ -58,7 +58,7 @@
     <string name="filters">FILTERS</string>
     <string name="excel">Excel</string>
     <string name="delivery_info">Delivery expected by Tomorrow</string>
-    <string name="about">This is a project based application only\nApp Version 2.0.8</string>
+    <string name="about">This is a project based application only\nApp Version 2.0.9</string>
     <string name="ins">Application is under maintenance\nPlease check back after some time.</string>
-    <string name="product_ins">Product displaying here can\'t be purchased\nYou can visit Books section clicking on spinning circle for making any real purchases</string>
+    <string name="product_ins">Product displaying here can\'t be purchased right now\nYou can visit Books section clicking on spinning circle for making any real purchases</string>
 </resources>
