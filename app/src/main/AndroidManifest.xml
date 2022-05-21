@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Ajio"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".activity.AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BooksActivity"
             android:exported="false" />
         <activity android:name=".activity.PaymentActivity" />
@@ -27,7 +30,8 @@
         <activity android:name=".activity.BagActivity" />
         <activity android:name=".activity.WishlistActivity" />
         <activity android:name=".activity.AccountActivity" />
-        <activity android:name=".activity.SplashScreenActivity"
+        <activity
+            android:name=".activity.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
