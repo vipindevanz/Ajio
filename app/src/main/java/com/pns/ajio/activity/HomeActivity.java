@@ -63,7 +63,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             if (user == null)
                 return false;
-            if (Objects.requireNonNull(user.getEmail()).equals("officialvipindev@gmail.com")){
+            if (Objects.requireNonNull(user.getEmail()).equals("officialvipindev@gmail.com")) {
                 startActivity(new Intent(HomeActivity.this, AdminActivity.class));
             }
             return true;
@@ -81,6 +81,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications");
 
+
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -89,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
                     Notification notification = snapshot.getValue(Notification.class);
 
-                    if (notification == null) return;
+                    if (notification == null || !notification.isVisibility()) return;
                     if (!preferences.getString("noti", "").equals(notification.getKey())) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this).setCancelable(false);
@@ -109,7 +110,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                             textView.setText(notification.getText());
                         }
 
-                        view.setOnClickListener(v -> {
+                        imageView.setOnClickListener(v -> {
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("clicks", notification.getClicks() + 1);

@@ -7,16 +7,18 @@ public class Notification {
     private String text;
     private String key;
     private int clicks;
+    private boolean visibility;
 
     public Notification() {
     }
 
-    public Notification(String imgUrl, String contentUrl, String text, String key, int clicks) {
+    public Notification(String imgUrl, String contentUrl, String text, String key, int clicks, boolean visibility) {
         this.imgUrl = imgUrl;
         this.contentUrl = contentUrl;
         this.text = text;
         this.key = key;
         this.clicks = clicks;
+        this.visibility = visibility;
     }
 
     public String getImgUrl() {
@@ -57,5 +59,13 @@ public class Notification {
 
     public void setClicks(int clicks) {
         this.clicks = clicks;
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
     }
 }
