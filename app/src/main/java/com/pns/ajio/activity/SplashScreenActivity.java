@@ -24,6 +24,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         mBinding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         checkStatus();
     }
 

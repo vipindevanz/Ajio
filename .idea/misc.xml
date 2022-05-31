@@ -20,6 +20,72 @@
         <entry key="..\:/Ajio/app/src/main/res/layout/fragment_stores.xml" value="0.182421875" />
         <entry key="..\:/Ajio/app/src/main/res/layout/notification_layout.xml" value="0.185546875" />
         <entry key="..\:/Ajio/app/src/main/res/layout/product_item_layout.xml" value="0.185546875" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/account_logo_circle.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/circle.xml" value="0.1185" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/custom_et_background.xml" value="0.1185" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/et_background.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/gradient.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_account.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_baby_svgrepo_com.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_back.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_bag.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_clear.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_contact.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_favourite.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_feedback.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_hamburger.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_home.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_home_svg.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_icons8_checked.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_logout.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_man_svgrepo_com.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_new_svgrepo_com.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_notification.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_search.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_search_2.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_shop_store_svgrepo_com.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_sneaker_svgrepo_com.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_store.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_wishlist.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/ic_wishlisted.xml" value="0.1995" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/menu_scrollview_rect.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/notif_middle_button.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/notifi_image_back.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/drawable/text_button_back.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_account.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_admin.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_bag.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_books.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_category.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_home.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_login.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_navigation.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_notification.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_payment.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_product.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_search_product.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/activity_wishlist.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/book_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/book_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/category_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/category_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/feeback.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/fragment_home.xml" value="0.17323121808898614" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/fragment_stores.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/home_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/home_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/notification_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/product_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/product_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/shimmer_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/store_item_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/layout/store_placeholder_layout.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/menu/menu_bottom.xml" value="0.24739583333333334" />
+        <entry key="..\:/Ajio2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />
+        <entry key="..\:/Ajio2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1925" />
         <entry key="..\:/Users/offic/AndroidStudioProjects/Ajiof/app/src/main/res/layout/product_item_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/ok/app/src/main/res/drawable/ic_baseline_contact_support_24.xml" value="0.189" />
         <entry key="..\:/ok/app/src/main/res/drawable/ic_chevron_right_.xml" value="0.189" />

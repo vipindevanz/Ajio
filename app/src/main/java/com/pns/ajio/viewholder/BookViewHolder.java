@@ -1,7 +1,6 @@
 package com.pns.ajio.viewholder;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.pns.ajio.R;
-import com.pns.ajio.activity.BagActivity;
-import com.pns.ajio.activity.BooksActivity;
 import com.pns.ajio.model.Book;
-import com.pns.ajio.model.ProductModel;
 
 public class BookViewHolder extends RecyclerView.ViewHolder {
 

@@ -2,15 +2,175 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@drawable/gradient"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
     tools:context=".activity.AdminActivity">
 
+    <LinearLayout
+        android:id="@+id/layout_relative"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@color/lime_white"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_16">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addHome"
+                android:layout_width="@dimen/dp_150"
+                android:textSize="10sp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:text="Add in home" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="wrap_content"
+                android:text="Add in store"
+                android:textSize="10sp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/addStore"
+                android:backgroundTint="@color/blue"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addCategory"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:text="Add category"
+                android:textSize="10sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="wrap_content"
+                android:text="Add books"
+                android:textSize="10sp"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/addBooks"
+                android:backgroundTint="@color/blue"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/addProducts"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                android:text="Add products"
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/products"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/products_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Products Url"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_ImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Image Url"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_Rating"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rating"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/products_brand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Brand"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/products_Submit"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF0000"
+            android:text="Submit" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/books"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <EditText
-        android:id="@+id/Title"
+        android:id="@+id/book_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Title"
@@ -19,7 +179,7 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/Description"
+        android:id="@+id/book_Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
@@ -28,7 +188,7 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/BookUrl"
+        android:id="@+id/book_BookUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="BookUrl"
@@ -37,7 +197,7 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/Category"
+        android:id="@+id/book_Category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category"
@@ -46,7 +206,7 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/ImageUrl"
+        android:id="@+id/book_ImageUrl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="ImageUrl"
@@ -55,16 +215,16 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/Length"
+        android:id="@+id/book_Length"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Length"
-        android:inputType="text"
+        android:inputType="number"
         android:textColor="@color/white"
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/Rating"
+        android:id="@+id/book_Rating"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +233,7 @@
         android:textColorHint="@color/blue" />
 
     <EditText
-        android:id="@+id/Writer"
+        android:id="@+id/book_Writer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Writer"
@@ -82,12 +242,139 @@
         android:textColorHint="@color/blue" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/Submit"
+        android:id="@+id/book_Submit"
         android:layout_width="match_parent"
         android:inputType="text"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FF0000"
         android:text="Submit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/category"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/category_Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/category_ImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ImageUrl"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/category_Submit"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF0000"
+            android:text="Submit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/store"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/store_ImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ImageUrl"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/store_product_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product url"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/store_video_id"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Video Id"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/store_Submit"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF0000"
+            android:text="Submit" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/home"
+        android:visibility="gone"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/home_product_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product url"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/home_Category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <EditText
+            android:id="@+id/home_ImageUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ImageUrl"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textColorHint="@color/blue" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/home_Submit"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FF0000"
+            android:text="Submit" />
+    </LinearLayout>
 
 </LinearLayout>

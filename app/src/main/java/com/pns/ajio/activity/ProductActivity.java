@@ -1,27 +1,22 @@
 package com.pns.ajio.activity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.pns.ajio.R;
 import com.pns.ajio.adapter.ProductAdapter;
 import com.pns.ajio.databinding.ActivityProductBinding;
-import com.pns.ajio.model.ProductModel;
-import com.razorpay.Checkout;
+import com.pns.ajio.model.Product;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,8 +26,8 @@ public class ProductActivity extends AppCompatActivity {
 
     private ActivityProductBinding mBinding;
     private ProductAdapter mAdapter;
-    private List<ProductModel> mList;
-    private DatabaseReference mDatabaseReference;
+    private List<Product> mList;
+    private String mCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,46 +35,40 @@ public class ProductActivity extends AppCompatActivity {
         mBinding = ActivityProductBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        Checkout.preload(getApplicationContext());
-
         initializeData();
-        openDialog();
-        addData();
     }
 
-    private void openDialog() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this).setCancelable(false);
-        builder.setMessage(getResources().getString(R.string.product_ins));
-        builder.setPositiveButton("Ok", (dialogInterface, i) -> {});
-        builder.create();
-        builder.show();
-    }
-
+    @SuppressLint("SetTextI18n")
     private void initializeData() {
 
-        mList = new ArrayList<>();
-        mAdapter = new ProductAdapter(mList, this);
-        mBinding.recyclerView.setAdapter(mAdapter);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("ProductDetails");
+        mCategory = getIntent().getStringExtra("category");
 
-        Glide.with(mBinding.imgAffiliate).load(R.drawable.spinning_circle).into(mBinding.imgAffiliate);
-        mBinding.imgAffiliate.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, BooksActivity.class)));
-        mBinding.imgBag.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, BagActivity.class)));
-        mBinding.imgFavourite.setOnClickListener(v -> {
-            startActivity(new Intent(ProductActivity.this, WishlistActivity.class));
-            finish();
-        });
-        mBinding.imgSearch.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, HomeActivity.class)));
-        mBinding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, NavigationActivity.class)));
+        if (mCategory == null) {
+            Toast.makeText(this, "Unable to display products", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mBinding.category.setText(mCategory);
+        mList = new ArrayList<>();
+        mAdapter = new ProductAdapter(mList, this, mCategory);
+        mBinding.recyclerView.setHasFixedSize(true);
+        mBinding.recyclerView.setAdapter(mAdapter);
+
+        setProductList();
+
+        mBinding.imgWishlist.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, WishlistActivity.class)));
+        mBinding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(ProductActivity.this, CategoryActivity.class)));
     }
 
-    private void addData() {
+    private void setProductList() {
 
         // Retrieving product details from firebase
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Affiliate").child(mCategory);
+        reference.keepSynced(true);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -89,40 +78,28 @@ public class ProductActivity extends AppCompatActivity {
 
                     for (DataSnapshot snapshot1 : snapshot.getChildren()) {
 
-                        ProductModel model = snapshot1.getValue(ProductModel.class);
+                        Product model = snapshot1.getValue(Product.class);
 
                         mList.add(model);
                     }
 
+                    mBinding.totalResults.setText(mList.size() + " results");
                     Collections.shuffle(mList);
-                    adjustView();
+                    mBinding.shimmerLayout.setVisibility(View.GONE);
+                    mBinding.recyclerView.setVisibility(View.VISIBLE);
                     mAdapter.notifyDataSetChanged();
 
                 } else {
 
-                    adjustView();
-
-                    Toast.makeText(ProductActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProductActivity.this, "Products unavailable", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-                adjustView();
-
                 Toast.makeText(ProductActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    private void adjustView() {
-
-        mBinding.shimmerLayout.setVisibility(View.GONE);
-        mBinding.tvPrice.setVisibility(View.VISIBLE);
-        mBinding.tvProducts.setVisibility(View.VISIBLE);
-        mBinding.recyclerView.setVisibility(View.VISIBLE);
-        mBinding.bottomLayout.setVisibility(View.VISIBLE);
-    }
-
 }

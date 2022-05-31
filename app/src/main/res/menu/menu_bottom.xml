@@ -12,18 +12,8 @@
         android:title="@string/stores" />
 
     <item
-        android:id="@+id/menu_account"
-        android:icon="@drawable/ic_account"
-        android:title="@string/account" />
-
-    <item
         android:id="@+id/menu_wishlist"
         android:icon="@drawable/ic_wishlist"
         android:title="@string/wishlist" />
-
-    <item
-        android:id="@+id/menu_bag"
-        android:icon="@drawable/ic_bag"
-        android:title="@string/bag" />
 
 </menu>

@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.pns.ajio.R;
-import com.pns.ajio.databinding.ActivityAccountBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -21,7 +22,13 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pns.ajio.R;
+import com.pns.ajio.databinding.ActivityAccountBinding;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class AccountActivity extends AppCompatActivity {
@@ -37,12 +44,95 @@ public class AccountActivity extends AppCompatActivity {
         mBinding = ActivityAccountBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
+        initViews();
+    }
+
+    private void initViews() {
+
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
         checkLoginState(mUser);
 
         mBinding.btnLogin.setOnClickListener(v -> signInWithGoogle());
+        mBinding.back.setOnClickListener(v -> finish());
+        mBinding.feedback.setOnClickListener(v -> openFeedback());
+        mBinding.home.setOnClickListener(v -> {
+            startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+            finish();
+        });
+        mBinding.store.setOnClickListener(v -> {
+            Intent intent = new Intent(AccountActivity.this, HomeActivity.class);
+            intent.putExtra("store", true);
+            startActivity(intent);
+            finish();
+        });
+        mBinding.categories.setOnClickListener(v -> {
+            startActivity(new Intent(AccountActivity.this, CategoryActivity.class));
+            finish();
+        });
+        mBinding.wishlist.setOnClickListener(v -> {
+            startActivity(new Intent(AccountActivity.this, WishlistActivity.class));
+            finish();
+        });
+        mBinding.tvEmail.setOnLongClickListener(view -> {
+            if (mUser == null) return false;
+            if (Objects.requireNonNull(mUser.getEmail()).equals("officialvipindev@gmail.com")) {
+                startActivity(new Intent(AccountActivity.this, AdminActivity.class));
+            }
+            return true;
+        });
+
+        mBinding.logout.setOnClickListener(v -> {
+
+            if (mUser != null) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Logout from the App");
+                builder.setPositiveButton("Cancel", (dialogInterface, i) -> {
+
+                }).setNegativeButton("Logout", (dialogInterface, i) -> {
+                    mAuth.signOut();
+                    finish();
+                });
+                builder.create();
+                builder.show();
+            }
+        });
+    }
+
+    private void openFeedback() {
+
+        View view = getLayoutInflater().inflate(R.layout.feedback, null);
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(true);
+
+        final EditText text = view.findViewById(R.id.suggestion);
+        Button submit = view.findViewById(R.id.submit);
+
+        submit.setOnClickListener(v -> {
+
+            String feed = text.getText().toString().trim();
+
+            if (!feed.equals("")) {
+
+                alertDialog.dismiss();
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("feed", feed);
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Suggestion");
+                reference.child(Objects.requireNonNull(reference.push().getKey())).setValue(map);
+                Toast.makeText(this, "Thank You for your Feedback!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alertDialog.create();
+        alertDialog.show();
     }
 
     private void signInWithGoogle() {
@@ -123,35 +213,10 @@ public class AccountActivity extends AppCompatActivity {
 
         if (user == null) return;
 
-        SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
-        boolean loggedInAlready = preferences.getBoolean("loggedIn", false);
-
-        if (loggedInAlready) {
-
-            mBinding.btnLogin.setVisibility(View.GONE);
-            mBinding.imgIcon.setImageDrawable(getResources().getDrawable(R.drawable.ajio));
-            mBinding.tvEdit.setVisibility(View.VISIBLE);
-            mBinding.tvName.setVisibility(View.VISIBLE);
-            mBinding.tvEmail.setVisibility(View.VISIBLE);
-            mBinding.tvPhone.setVisibility(View.VISIBLE);
-
-            mBinding.tvName.setText(user.getDisplayName());
-            mBinding.tvEmail.setText(user.getEmail());
-
-            if (user.getPhoneNumber() != null && Objects.requireNonNull(user.getPhoneNumber()).length() < 10) {
-                mBinding.tvPhone.setText("8890790340");
-            } else {
-                mBinding.tvPhone.setText(user.getPhoneNumber());
-            }
-
-        } else {
-
-            mBinding.btnLogin.setVisibility(View.VISIBLE);
-            mBinding.imgIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_account));
-            mBinding.tvEdit.setVisibility(View.GONE);
-            mBinding.tvName.setVisibility(View.GONE);
-            mBinding.tvEmail.setVisibility(View.GONE);
-            mBinding.tvPhone.setVisibility(View.GONE);
-        }
+        mBinding.btnLogin.setVisibility(View.GONE);
+        mBinding.tvName.setText(user.getDisplayName());
+        mBinding.tvEmail.setText(user.getEmail());
+        mBinding.tvName.setVisibility(View.VISIBLE);
+        mBinding.tvEmail.setVisibility(View.VISIBLE);
     }
 }

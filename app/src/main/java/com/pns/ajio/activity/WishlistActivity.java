@@ -1,5 +1,6 @@
 package com.pns.ajio.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -8,82 +9,99 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.pns.ajio.adapter.ProductAdapter;
-import com.pns.ajio.databinding.ActivityWishlistBinding;
-import com.pns.ajio.model.ProductModel;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pns.ajio.adapter.ProductAdapter;
+import com.pns.ajio.databinding.ActivityWishlistBinding;
+import com.pns.ajio.model.Product;
+import com.pns.ajio.model.WishList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WishlistActivity extends AppCompatActivity {
 
-    private List<ProductModel> mList;
+    private List<Product> mList;
     private ProductAdapter mAdapter;
     private ActivityWishlistBinding mBinding;
-    private DatabaseReference mDatabaseReference;
-    private final String uid = FirebaseAuth.getInstance().getUid();
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mBinding = ActivityWishlistBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        mBinding.btnContinueShopping.setOnClickListener(v -> finish());
-
         initDataAndView();
-        fetchData();
     }
 
     private void initDataAndView() {
 
+        mBinding.btnContinueShopping.setOnClickListener(v -> finish());
         mList = new ArrayList<>();
-        mAdapter = new ProductAdapter(mList, this);
+        mAdapter = new ProductAdapter(mList, this, "Wishlist Products");
         mBinding.recyclerView.setAdapter(mAdapter);
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("ProductDetails");
+        fetchData();
     }
 
     private void fetchData() {
 
-        mDatabaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+        if (user == null) return;
 
-                if (snapshot.exists()) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Affiliate");
+        reference.keepSynced(true);
 
-                    mList.clear();
+        FirebaseDatabase.getInstance().getReference("Wishlist").child(user.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                        if (snapshot.exists()) {
 
-                        ProductModel model = snapshot1.getValue(ProductModel.class);
+                            for (DataSnapshot snapshot1 : snapshot.getChildren()) {
 
-                        // Adding only those products which has been ordered
+                                WishList wishList = snapshot1.getValue(WishList.class);
 
-                        if (model != null && model.getWishlisted().contains(uid)) {
+                                if (wishList == null) return;
 
-                            mList.add(model);
+                                reference.child(wishList.getCategory()).child(wishList.getKey())
+                                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                if (snapshot.exists()) {
+
+                                                    Product product = snapshot.getValue(Product.class);
+
+                                                    mList.add(product);
+
+                                                    mAdapter.notifyDataSetChanged();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Toast.makeText(WishlistActivity.this, error.getMessage(),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
 
                             mBinding.layoutRelative.setVisibility(View.GONE);
                             mBinding.recyclerView.setVisibility(View.VISIBLE);
                         }
                     }
 
-                    mAdapter.notifyDataSetChanged();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                Toast.makeText(WishlistActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                        Toast.makeText(WishlistActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

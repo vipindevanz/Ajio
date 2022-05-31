@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/lime_white"
     android:layout_height="wrap_content">
 
     <RelativeLayout
@@ -140,8 +141,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0.5"
+        android:layout_height="@dimen/dp_1"
         android:layout_below="@+id/buyNow"
-        android:background="@color/black" />
+        android:background="@drawable/gradient" />
 
 </RelativeLayout>

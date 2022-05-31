@@ -25,155 +25,142 @@
                 android:src="@drawable/ic_hamburger"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/img_search"
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/dp_15"
-                android:layout_toStartOf="@+id/img_favourite"
-                android:src="@drawable/ic_search_2"
-                tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/img_favourite"
+                android:id="@+id/img_wishlist"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/dp_15"
-                android:layout_toStartOf="@+id/img_bag"
-                android:src="@drawable/ic_favourite"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_bag"
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
-                android:layout_toStartOf="@+id/img_affiliate"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/dp_10"
-                android:src="@drawable/ic_bag_in"
-                tools:ignore="ContentDescription" />
-
-            <ImageView
-                android:id="@+id/img_affiliate"
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
-                android:adjustViewBounds="true"
-                android:layout_marginEnd="@dimen/dp_5"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_15"
+                android:src="@drawable/ic_favourite"
                 tools:ignore="ContentDescription" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/tv_price"
+        android:id="@+id/totalResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_10"
         android:layout_marginStart="@dimen/dp_15"
-        android:text="@string/under_rs_9999"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/tv_products"
-        android:layout_below="@id/tv_price"
-        android:layout_width="wrap_content"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_15"
-        android:text="@string/_2345_products"
+        android:text="fetching results..."
         android:textSize="@dimen/sp_12" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/shimmer_layout"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/totalResults">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
-            <include layout="@layout/shimmer_placeholder_layout"/>
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
+
+            <include layout="@layout/product_placeholder_layout" />
 
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_above="@+id/bottom_layout"
-        android:layout_below="@id/tv_products"
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@id/totalResults"
         android:layout_marginTop="@dimen/dp_10"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/product_item_layout" />
 
     <LinearLayout
         android:id="@+id/bottom_layout"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <TextView
-            android:background="@color/black"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:padding="@dimen/dp_10"
             android:layout_width="@dimen/dp_0"
-            android:textSize="@dimen/sp_12"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
             android:text="@string/sort_by"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
 
         <TextView
-            android:background="@color/black"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_marginEnd="@dimen/dp_0.5"
             android:layout_marginStart="@dimen/dp_0.5"
+            android:layout_marginEnd="@dimen/dp_0.5"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:layout_width="@dimen/dp_0"
-            android:textSize="@dimen/sp_12"
             android:text="@string/category"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
 
         <TextView
-            android:background="@color/black"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/sp_12"
-            android:gravity="center"
-            android:layout_weight="1"
             android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:gravity="center"
             android:padding="@dimen/dp_10"
             android:text="@string/filters"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_12" />
 
     </LinearLayout>
 </RelativeLayout>

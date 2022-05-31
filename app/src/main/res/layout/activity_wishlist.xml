@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".activity.WishlistActivity">
 
-
     <TextView
         android:id="@+id/tv_wishlist"
         android:layout_width="match_parent"
@@ -18,20 +17,32 @@
         android:textSize="@dimen/sp_18"
         android:textStyle="bold" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:layout_below="@+id/tv_wishlist"
+        android:background="@drawable/gradient"/>
+
     <RelativeLayout
         android:id="@+id/layout_relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_wishlist">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_above="@+id/tv_wishlist_2"
+            android:layout_height="match_parent">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_wishlist_2"
             android:adjustViewBounds="true"
-            android:src="@drawable/heart"
+            android:layout_centerInParent="true"
+            android:src="@drawable/empty_wishlist"
             tools:ignore="ContentDescription" />
 
+        </RelativeLayout>
         <TextView
             android:id="@+id/tv_wishlist_2"
             android:layout_width="match_parent"
@@ -71,8 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_wishlist"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:visibility="gone"/>
 
 </RelativeLayout>

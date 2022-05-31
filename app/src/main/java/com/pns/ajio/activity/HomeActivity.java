@@ -1,13 +1,14 @@
 package com.pns.ajio.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,9 +19,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityHomeBinding;
-import com.pns.ajio.fragment.BottomSheetFragment;
 import com.pns.ajio.fragment.HomeFragment;
 import com.pns.ajio.fragment.StoresFragment;
 import com.pns.ajio.model.Notification;
@@ -37,43 +34,76 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import me.ibrahimsn.lib.OnItemSelectedListener;
+
+public class HomeActivity extends AppCompatActivity {
+
+    private ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityHomeBinding binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.menuBottom.setOnNavigationItemSelectedListener(this);
-        binding.menuBottom.setOnNavigationItemSelectedListener(this);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, new HomeFragment())
-                .commit();
-
-        binding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, NavigationActivity.class)));
-        binding.imgAffiliate.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, BooksActivity.class)));
-        binding.imgAffiliate.setOnLongClickListener(view -> {
-
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-            if (user == null)
-                return false;
-            if (Objects.requireNonNull(user.getEmail()).equals("officialvipindev@gmail.com")) {
-                startActivity(new Intent(HomeActivity.this, AdminActivity.class));
-            }
-            return true;
-        });
-        binding.imgDrop.setOnClickListener(v -> openBottomSheetDialog());
-        Glide.with(binding.imgAffiliate).load(R.drawable.spinning_circle).into(binding.imgAffiliate);
-        updateVisits();
-        showDialog();
-        checkNotifications();
+        initViews();
     }
+
+    private void initViews() {
+
+        binding.menuBottom.setOnItemSelectedListener(listener);
+
+        boolean switchToStore = getIntent().getBooleanExtra("store", false);
+
+        if (switchToStore) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new StoresFragment())
+                    .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new HomeFragment())
+                    .commit();
+        }
+
+        binding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, CategoryActivity.class)));
+        binding.imgAccount.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, AccountActivity.class)));
+        binding.search.setOnClickListener(v -> Toast.makeText(this, "Functionality unavailable right now", Toast.LENGTH_SHORT).show());
+
+        updateVisits();
+        checkNotifications();
+        isNetworkConnected();
+    }
+
+    private final OnItemSelectedListener listener = i -> {
+
+        switch (i) {
+
+            // Setting menu
+
+            case 0:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new HomeFragment())
+                        .commit();
+                break;
+
+            case 1:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new StoresFragment())
+                        .commit();
+                break;
+
+            case 2:
+                startActivity(new Intent(HomeActivity.this, WishlistActivity.class));
+                break;
+        }
+
+        return true;
+    };
 
     private void checkNotifications() {
 
@@ -146,25 +176,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         });
     }
 
-    private void showDialog() {
-
-        SharedPreferences preferences = getSharedPreferences("PREF", MODE_PRIVATE);
-
-        if (preferences.getBoolean("isNotVisitedBooks", true)) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this).setCancelable(false);
-            builder.setMessage(getResources().getString(R.string.product_ins));
-            builder.setPositiveButton("Ok", (dialogInterface, i) -> {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean("isNotVisitedBooks", false);
-                editor.apply();
-                startActivity(new Intent(HomeActivity.this, BooksActivity.class));
-            });
-            builder.create();
-            builder.show();
-        }
-    }
-
     private void updateVisits() {
 
         @SuppressLint("SimpleDateFormat")
@@ -187,6 +198,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
                         Integer visitors = snapshot.getValue(Integer.class);
 
+                        if (visitors != null)
                         reference.setValue(visitors + 1);
 
                     } else {
@@ -212,64 +224,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         return super.onCreateOptionsMenu(menu);
     }
 
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            // Setting menu
-
-            case R.id.menu_home:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new HomeFragment())
-                        .commit();
-                break;
-
-            case R.id.menu_stores:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new StoresFragment())
-                        .commit();
-                break;
-
-            case R.id.menu_account:
-                startActivity(new Intent(HomeActivity.this, AccountActivity.class));
-                break;
-
-            case R.id.menu_wishlist:
-
-                SharedPreferences preferences = getSharedPreferences("PREFS", MODE_PRIVATE);
-                boolean loggedInAlready = preferences.getBoolean("loggedIn", false);
-
-                if (loggedInAlready) {
-                    startActivity(new Intent(HomeActivity.this, WishlistActivity.class));
-                } else {
-                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-                }
-
-                break;
-
-            case R.id.menu_bag:
-                startActivity(new Intent(HomeActivity.this, BagActivity.class));
-                break;
-
-            default:
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+    private void isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() == null || !cm.getActiveNetworkInfo().isConnected()) {
+            Toast.makeText(this, "No Internet Connection", Toast.LENGTH_LONG).show();
         }
-
-        return true;
-    }
-
-    private void openBottomSheetDialog() {
-
-        BottomSheetFragment fragment = new BottomSheetFragment();
-        fragment.show(getSupportFragmentManager(), fragment.getTag());
-    }
-
-    public void onProductClick(View v) {
-
-        startActivity(new Intent(HomeActivity.this, ProductActivity.class));
     }
 }
