@@ -42,7 +42,6 @@
                 android:layout_marginEnd="@dimen/dp_5"
                 android:layout_marginBottom="@dimen/dp_5"
                 android:fontFamily="sans-serif"
-                android:text="All the light we cannot see"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -67,7 +66,6 @@
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_weight="1"
                         android:backgroundTint="#00A6FF"
-                        android:text="4.5 ⭐"
                         android:textSize="10sp" />
 
                     <com.google.android.material.button.MaterialButton
@@ -78,7 +76,6 @@
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_weight="1"
                         android:backgroundTint="#00A6FF"
-                        android:text="English"
                         android:textSize="10sp"/>
 
                 </LinearLayout>
@@ -96,7 +93,6 @@
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_weight="1"
                         android:backgroundTint="#00A6FF"
-                        android:text="222 Pages"
                         android:textSize="10sp"/>
 
                     <com.google.android.material.button.MaterialButton
@@ -107,7 +103,6 @@
                         android:layout_marginEnd="@dimen/dp_5"
                         android:layout_weight="1"
                         android:backgroundTint="#00A6FF"
-                        android:text="Robin Sharma"
                         android:textSize="10sp"/>
 
                 </LinearLayout>
@@ -143,6 +138,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:layout_below="@+id/buyNow"
-        android:background="@drawable/gradient" />
+        android:background="#D5D5D5" />
 
 </RelativeLayout>

@@ -60,6 +60,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:layout_below="@+id/top_layout"
-        android:background="@drawable/gradient" />
+        android:background="#D5D5D5" />
 
 </RelativeLayout>

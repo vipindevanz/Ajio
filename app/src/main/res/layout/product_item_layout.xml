@@ -41,7 +41,7 @@
                     android:layout_marginTop="@dimen/dp_5"
                     android:layout_marginEnd="@dimen/dp_5"
                     android:layout_marginBottom="@dimen/dp_5"
-                    android:src="@drawable/ic_wishlist"
+                    android:src="@drawable/ic_favourite"
                     tools:ignore="ContentDescription" />
 
             </RelativeLayout>
@@ -53,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
-            android:text="Xiomi Redmi 9A"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -67,7 +66,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#00A6FF"
-                android:text="4.5⭐"
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -76,7 +74,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="#00A6FF"
-                android:text="Xiomi"
                 android:textAllCaps="false"
                 android:textSize="12sp" />
 
@@ -86,7 +83,6 @@
             android:id="@+id/desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=" SIM (nano+nano) + Dedicated SD card slot"
             app:readMoreColor="#0000ff"
             app:readMoreMaxLine="3"
             app:readMoreText="...Read more" />
@@ -105,6 +101,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:layout_below="@+id/top_layout"
-        android:background="@drawable/gradient" />
+        android:background="#D5D5D5" />
 
 </RelativeLayout>

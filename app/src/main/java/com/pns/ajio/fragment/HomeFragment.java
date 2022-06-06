@@ -21,10 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pns.ajio.activity.ProductActivity;
 import com.pns.ajio.adapter.HomeAdapter;
-import com.pns.ajio.adapter.StoreAdapter;
 import com.pns.ajio.databinding.FragmentHomeBinding;
 import com.pns.ajio.model.HomeProduct;
-import com.pns.ajio.model.StoreProduct;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,7 +50,7 @@ public class HomeFragment extends Fragment {
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
 
         getSlideImages();
         setList();
@@ -92,11 +90,9 @@ public class HomeFragment extends Fragment {
 //                    mBinding.notice.setVisibility(View.VISIBLE); Scrolling issue with recyclerview
                     mBinding.recyclerView.setVisibility(View.VISIBLE);
 
-                    mBinding.view.setVisibility(View.VISIBLE);
-
                 } else {
                     if (getContext() != null)
-                    Toast.makeText(getContext(), "Products unavailable", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Products unavailable", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -117,7 +113,7 @@ public class HomeFragment extends Fragment {
         list.add("https://images.ctfassets.net/wcfotm6rrl7u/2sDJE99xaUTEDxrkiopmtK/be3cba35562ec25a738ac957d93d7964/april_8th_launch-og_image.jpg");
         list.add("https://media.gq-magazine.co.uk/photos/62456f804a9bdf194462386f/master/pass/30032022_PHONES_HP1.jpg");
 
-        for (String img : list){
+        for (String img : list) {
             showSlideImages(img);
         }
     }

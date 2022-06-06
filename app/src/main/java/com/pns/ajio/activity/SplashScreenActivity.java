@@ -1,6 +1,8 @@
 package com.pns.ajio.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -24,11 +26,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         mBinding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         checkStatus();
     }
 
     private void checkStatus() {
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() == null || !cm.getActiveNetworkInfo().isConnected()) {
+            openHomeActivity();
+            return;
+        }
 
         FirebaseDatabase.getInstance().getReference("Status").addValueEventListener(new ValueEventListener() {
             @Override

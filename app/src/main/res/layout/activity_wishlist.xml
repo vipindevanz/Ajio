@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1"
         android:layout_below="@+id/tv_wishlist"
-        android:background="@drawable/gradient"/>
+        android:background="#D5D5D5"/>
 
     <RelativeLayout
         android:id="@+id/layout_relative"

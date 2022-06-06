@@ -14,13 +14,6 @@
             android:visibility="gone"
             tools:ignore="OnClick,UsingOnClickInXml" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:visibility="gone"
-            android:background="@drawable/gradient"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
