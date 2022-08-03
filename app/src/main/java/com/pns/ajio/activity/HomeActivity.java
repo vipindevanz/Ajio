@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityHomeBinding;
 import com.pns.ajio.fragment.HomeFragment;
-import com.pns.ajio.fragment.StoresFragment;
+import com.pns.ajio.fragment.SpotLightFragment;
 import com.pns.ajio.model.Notification;
 
 import java.text.SimpleDateFormat;
@@ -54,19 +54,11 @@ public class HomeActivity extends AppCompatActivity {
 
         binding.menuBottom.setOnItemSelectedListener(listener);
 
-        boolean switchToStore = getIntent().getBooleanExtra("store", false);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, new SpotLightFragment())
+                .commit();
 
-        if (switchToStore) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new StoresFragment())
-                    .commit();
-        } else {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new HomeFragment())
-                    .commit();
-        }
 
         binding.imgHamburger.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, CategoryActivity.class)));
         binding.imgAccount.setOnClickListener(v -> startActivity(new Intent(HomeActivity.this, AccountActivity.class)));
@@ -86,14 +78,14 @@ public class HomeActivity extends AppCompatActivity {
             case 0:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new HomeFragment())
+                        .replace(R.id.fragment_container, new SpotLightFragment())
                         .commit();
                 break;
 
             case 1:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new StoresFragment())
+                        .replace(R.id.fragment_container, new HomeFragment())
                         .commit();
                 break;
 
@@ -199,7 +191,7 @@ public class HomeActivity extends AppCompatActivity {
                         Integer visitors = snapshot.getValue(Integer.class);
 
                         if (visitors != null)
-                        reference.setValue(visitors + 1);
+                            reference.setValue(visitors + 1);
 
                     } else {
                         reference.setValue(1);

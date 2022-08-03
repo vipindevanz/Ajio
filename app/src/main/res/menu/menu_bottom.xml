@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/menu_spotlight"
+        android:icon="@drawable/ic_play"
+        android:title="@string/spotlight" />
+
+    <item
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
-
-    <item
-        android:id="@+id/menu_stores"
-        android:icon="@drawable/ic_store"
-        android:title="@string/stores" />
 
     <item
         android:id="@+id/menu_wishlist"

@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/store" />
+                    android:src="@drawable/spotlight" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

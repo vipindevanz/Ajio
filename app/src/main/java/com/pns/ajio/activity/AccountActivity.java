@@ -62,9 +62,7 @@ public class AccountActivity extends AppCompatActivity {
             finish();
         });
         mBinding.store.setOnClickListener(v -> {
-            Intent intent = new Intent(AccountActivity.this, HomeActivity.class);
-            intent.putExtra("store", true);
-            startActivity(intent);
+            startActivity(new Intent(AccountActivity.this, HomeActivity.class));
             finish();
         });
         mBinding.categories.setOnClickListener(v -> {

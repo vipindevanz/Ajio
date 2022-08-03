@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:keepScreenOn="true"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/black"
+        android:fitsSystemWindows="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:linksClickable="true"
+            android:textColorLink="@color/blue" />
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_desc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/dp_5"
+        android:background="@drawable/rectangle"
+        android:padding="@dimen/dp_10"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:text="Description"
+        android:textColor="@color/white"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

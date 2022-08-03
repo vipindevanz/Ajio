@@ -104,7 +104,5 @@
             <include layout="@layout/book_placeholder_layout" />
 
         </LinearLayout>
-
     </com.facebook.shimmer.ShimmerFrameLayout>
-
 </LinearLayout>
