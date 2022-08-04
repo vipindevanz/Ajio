@@ -30,7 +30,14 @@ class SpotlightViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             videoView.setVideoPath(model.videoUrl)
 
-            desc.text = model.des
+            val links: Array<String> = model.des.split("@".toRegex()).toTypedArray()
+            val string = StringBuilder()
+
+            links.iterator().forEach {
+                string.append(it + "\n\n")
+            }
+
+            desc.text = string
 
             videoView.setOnPreparedListener {
 

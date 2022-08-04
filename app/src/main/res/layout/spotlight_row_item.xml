@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
-    android:layout_height="match_parent">
+    android:gravity="center">
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:keepScreenOn="true"
         android:layout_centerInParent="true"
         android:backgroundTint="@color/black"
-        android:fitsSystemWindows="true" />
+        android:fitsSystemWindows="true"
+        android:keepScreenOn="true" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -24,20 +24,32 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
+
         android:layout_alignParentBottom="true"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_desc"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autoLink="web"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:linksClickable="true"
-            android:textColorLink="@color/blue" />
+            android:layout_height="wrap_content">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_200"
+                android:alpha="0.5"
+                android:background="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:textColor="@color/white"
+                android:textColorLink="@color/blue"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
     </ScrollView>
 
     <TextView
@@ -48,10 +60,10 @@
         android:layout_margin="@dimen/dp_5"
         android:background="@drawable/rectangle"
         android:padding="@dimen/dp_10"
-        android:textStyle="bold"
-        android:visibility="gone"
         android:text="Description"
         android:textColor="@color/white"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </RelativeLayout>

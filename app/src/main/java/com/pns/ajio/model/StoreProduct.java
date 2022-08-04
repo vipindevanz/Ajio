@@ -17,6 +17,7 @@ public class StoreProduct {
         this.productUrl = productUrl;
         this.key = key;
         this.purchased = purchased;
+
     }
 
     public String getVideoId() {
