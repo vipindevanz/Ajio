@@ -23,6 +23,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
     private final List<HomeProduct> mList;
     private final Context mContext;
 
+
     public HomeAdapter(List<HomeProduct> list, Context context) {
         mList = list;
         mContext = context;
@@ -48,7 +49,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
 
             if (product.getProductUrl().isEmpty()) {
 
-                if (product.getCategory().equalsIgnoreCase("books")){
+                if (product.getCategory().equalsIgnoreCase("books")) {
                     mContext.startActivity(new Intent(mContext, BooksActivity.class));
                     return;
                 }
@@ -56,6 +57,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeViewHolder> {
                 Intent intent = new Intent(mContext, ProductActivity.class);
                 intent.putExtra("category", product.getCategory());
                 mContext.startActivity(intent);
+
             } else {
                 openLink(product);
             }

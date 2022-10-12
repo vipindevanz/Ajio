@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityAccountBinding;
+import com.pns.ajio.fragment.StoresFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +63,7 @@ public class AccountActivity extends AppCompatActivity {
             finish();
         });
         mBinding.store.setOnClickListener(v -> {
-            startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+            startActivity(new Intent(AccountActivity.this, StoresFragment.class));
             finish();
         });
         mBinding.categories.setOnClickListener(v -> {

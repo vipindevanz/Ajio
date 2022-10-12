@@ -1,25 +1,21 @@
 package com.pns.ajio.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.pns.ajio.activity.ProductActivity;
 import com.pns.ajio.adapter.HomeAdapter;
 import com.pns.ajio.databinding.FragmentHomeBinding;
 import com.pns.ajio.model.HomeProduct;
@@ -47,18 +43,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initViews();
-    }
-
-    private void initViews() {
-
-        getSlideImages();
         setList();
-        mBinding.viewFlipper.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), ProductActivity.class);
-            intent.putExtra("category", "Smartphones");
-            requireContext().startActivity(intent);
-        });
     }
 
     private void setList() {
@@ -86,8 +71,6 @@ public class HomeFragment extends Fragment {
                     mBinding.recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     mBinding.shimmerLayout.setVisibility(View.GONE);
-//                    mBinding.viewFlipper.setVisibility(View.VISIBLE); Scrolling issue with recyclerview
-//                    mBinding.notice.setVisibility(View.VISIBLE); Scrolling issue with recyclerview
                     mBinding.recyclerView.setVisibility(View.VISIBLE);
 
                 } else {
@@ -101,35 +84,5 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void getSlideImages() {
-
-        List<String> list = new ArrayList<>();
-        list.add("https://i.ytimg.com/vi/aeQnQ-vjtuY/maxresdefault.jpg");
-        list.add("https://gadgets-africa.com/wp-content/uploads/2020/05/1_BGkB9VOJrhNPGuJDia8vgQ.jpeg");
-        list.add("https://miro.medium.com/max/1400/1*goGPwn50r5CuNC_dlXnU9A.jpeg");
-        list.add("https://i.ytimg.com/vi/kbeEkwlTeqQ/maxresdefault.jpg");
-        list.add("https://images.ctfassets.net/wcfotm6rrl7u/2sDJE99xaUTEDxrkiopmtK/be3cba35562ec25a738ac957d93d7964/april_8th_launch-og_image.jpg");
-        list.add("https://media.gq-magazine.co.uk/photos/62456f804a9bdf194462386f/master/pass/30032022_PHONES_HP1.jpg");
-
-        for (String img : list) {
-            showSlideImages(img);
-        }
-    }
-
-    private void showSlideImages(String img) {
-
-        // Sliding the images one by one in infinite loop
-
-        ImageView imageView = new ImageView(getContext());
-        Glide.with(imageView).load(img).into(imageView);
-
-        mBinding.viewFlipper.addView(imageView);
-        mBinding.viewFlipper.setFlipInterval(3000);
-        mBinding.viewFlipper.setAutoStart(true);
-
-        mBinding.viewFlipper.setInAnimation(getContext(), android.R.anim.slide_in_left);
-        mBinding.viewFlipper.setOutAnimation(getContext(), android.R.anim.slide_out_right);
     }
 }

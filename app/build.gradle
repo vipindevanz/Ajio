@@ -26,8 +26,8 @@ android {
         applicationId "com.pns.ajio"
         minSdkVersion 21
         targetSdkVersion 32
-        versionCode 12
-        versionName "3.0.2"
+        versionCode 14
+        versionName "3.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,4 +78,5 @@ dependencies {
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
 }

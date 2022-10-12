@@ -19,6 +19,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,12 +30,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityHomeBinding;
 import com.pns.ajio.fragment.HomeFragment;
-import com.pns.ajio.fragment.SpotLightFragment;
+import com.pns.ajio.fragment.StoresFragment;
 import com.pns.ajio.model.Notification;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import me.ibrahimsn.lib.OnItemSelectedListener;
@@ -48,6 +52,34 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initViews();
+        initializeAdmob();
+    }
+
+    private void initializeAdmob() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
+        String date = sharedPreferences.getString("date", "");
+
+        String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+        if (date.equals(currentDate)) {
+            binding.adView.setVisibility(View.GONE);
+            return;
+        }
+
+        MobileAds.initialize(this, initializationStatus -> {
+        });
+        AdRequest adRequest = new AdRequest.Builder().build();
+        binding.adView.loadAd(adRequest);
+
+        binding.adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("date", currentDate);
+                editor.apply();
+            }
+        });
     }
 
     private void initViews() {
@@ -56,7 +88,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, new SpotLightFragment())
+                .replace(R.id.fragment_container, new HomeFragment())
                 .commit();
 
 
@@ -78,14 +110,14 @@ public class HomeActivity extends AppCompatActivity {
             case 0:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new SpotLightFragment())
+                        .replace(R.id.fragment_container, new HomeFragment())
                         .commit();
                 break;
 
             case 1:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container, new HomeFragment())
+                        .replace(R.id.fragment_container, new StoresFragment())
                         .commit();
                 break;
 
