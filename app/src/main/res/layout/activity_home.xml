@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activity.HomeActivity">
+    tools:context=".ui.main.home.HomeActivity">
 
     <LinearLayout
         android:id="@+id/layout_relative"
@@ -84,14 +84,14 @@
         android:layout_above="@id/menu_bottom"
         android:layout_below="@+id/layout_relative" />
 
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/menu_bottom"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-8964057723549049/8458149028" />
+<!--    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+<!--        android:id="@+id/adView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@+id/menu_bottom"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        ads:adSize="BANNER"-->
+<!--        ads:adUnitId="ca-app-pub-3177345536292496/7081815148" />-->
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/menu_bottom"

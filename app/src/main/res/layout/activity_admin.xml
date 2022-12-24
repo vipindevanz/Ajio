@@ -5,7 +5,7 @@
     android:background="@drawable/gradient"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.AdminActivity">
+    tools:context=".ui.admin.AdminActivity">
 
     <LinearLayout
         android:id="@+id/layout_relative"

@@ -14,22 +14,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopKaro"
         tools:ignore="AllowBackup">
-        <activity android:name=".activity.AdminActivity"
+        <activity android:name=".ui.admin.AdminActivity"
             android:exported="false" />
-        <activity android:name=".activity.BooksActivity"
+        <activity android:name=".ui.book.BooksActivity"
             android:exported="false" />
-        <activity android:name=".activity.ProductActivity"
+        <activity android:name=".ui.product.ProductActivity"
             android:exported="false" />
-        <activity android:name=".activity.AccountActivity"
+        <activity android:name=".ui.account.AccountActivity"
             android:exported="false" />
-        <activity android:name=".activity.CategoryActivity"
+        <activity android:name=".ui.category.CategoryActivity"
             android:exported="false" />
-        <activity android:name=".activity.WishlistActivity"
+        <activity android:name=".ui.wishlist.WishlistActivity"
             android:exported="false" />
-        <activity android:name=".activity.HomeActivity"
+        <activity android:name=".ui.main.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SplashScreenActivity"
+            android:name=".ui.onboarding.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +40,6 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8964057723549049~8845957995"/>
+            android:value="ca-app-pub-7075712694156587~9914046329"/>
     </application>
 </manifest>
