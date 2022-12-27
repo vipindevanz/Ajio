@@ -26,11 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pns.ajio.R;
 import com.pns.ajio.databinding.ActivityAccountBinding;
-import com.pns.ajio.ui.admin.AdminActivity;
 import com.pns.ajio.ui.category.CategoryActivity;
 import com.pns.ajio.ui.main.home.HomeActivity;
-import com.pns.ajio.ui.wishlist.WishlistActivity;
 import com.pns.ajio.ui.main.store.StoresFragment;
+import com.pns.ajio.ui.wishlist.WishlistActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,13 +76,6 @@ public class AccountActivity extends AppCompatActivity {
         mBinding.wishlist.setOnClickListener(v -> {
             startActivity(new Intent(AccountActivity.this, WishlistActivity.class));
             finish();
-        });
-        mBinding.tvEmail.setOnLongClickListener(view -> {
-            if (mUser == null) return false;
-            if (Objects.requireNonNull(mUser.getEmail()).equals("officialvipindev@gmail.com")) {
-                startActivity(new Intent(AccountActivity.this, AdminActivity.class));
-            }
-            return true;
         });
 
         mBinding.logout.setOnClickListener(v -> {

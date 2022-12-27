@@ -32,7 +32,7 @@ public class CategoryActivity extends AppCompatActivity {
         setAdapter();
 
         CategoryViewModel categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
-        categoryViewModel.getProductListData().observe(this, categories -> {
+        categoryViewModel.getCategoryListData().observe(this, categories -> {
 
             if (!categories.isEmpty()) {
                 binding.shimmerLayout.setVisibility(View.GONE);
