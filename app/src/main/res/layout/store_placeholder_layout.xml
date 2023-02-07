@@ -35,7 +35,8 @@
                 <ImageView
                     android:id="@+id/youtube_player_view"
                     android:layout_width="match_parent"
-                    android:background="#ff00ff"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="#0066FF"
                     android:layout_height="@dimen/dp_200" />
 
             </LinearLayout>
