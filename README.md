@@ -1,9 +1,9 @@
-![GitHub Cards Preview](https://firebasestorage.googleapis.com/v0/b/snapchat-f2264.appspot.com/o/Title_Slide%5B1%5D.png?alt=media&token=baa0cc9d-8a52-44ba-8507-e4c2475816d9)
+![GitHub Cards Preview](https://firebasestorage.googleapis.com/v0/b/snapchat-f2264.appspot.com/o/Purple%20App%20Phone%20Mockup%20Sales%20Marketing%20Presentation.png?alt=media&token=694fd62b-1b0b-44e0-be3a-1041682f2a7a)
 
 ###  
 App Name                   | Describe                  | Tech Stack             | Google Play 
 :------------------------: | :------------------------ | :------------------------: | :------------------------: 
-Ajio Clone | Ajio is a one stop online fashion destination brought to you from the house of Reliance. | Android, Java, Firebase, Glide | [![Get it on Google Play](https://firebasestorage.googleapis.com/v0/b/snapchat-f2264.appspot.com/o/T9HnFlW.png?alt=media&token=b46055e4-3b02-424f-9e88-862543831a8b)](https://play.google.com/store/apps/details?id=com.pns.ajio)
+Shop Karo | Shop for electronics, books, and other lifestyle products. | Android, Java, Kotlin, Firebase, Glide, MVVM, Live Data | [![Get it on Google Play](https://firebasestorage.googleapis.com/v0/b/snapchat-f2264.appspot.com/o/T9HnFlW.png?alt=media&token=b46055e4-3b02-424f-9e88-862543831a8b)](https://play.google.com/store/apps/details?id=com.pns.ajio)
 
 # Dependencies 
 
