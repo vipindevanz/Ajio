@@ -40,7 +40,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/dp_15"
-                android:src="@drawable/ic_favourite"
+                android:src="@drawable/ic_wishlisted"
                 tools:ignore="ContentDescription" />
 
         </RelativeLayout>
