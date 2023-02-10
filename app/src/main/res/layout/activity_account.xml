@@ -10,55 +10,56 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:background="@color/white"
-        app:contentInsetStart="@dimen/dp_5"
-        android:layout_height="wrap_content">
-
-    <RelativeLayout
-        android:id="@+id/rl_my_account_header"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:contentInsetStart="@dimen/dp_5">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_my_account_header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_my_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/my_account"
-            android:layout_centerInParent="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_18" />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back"
+                tools:ignore="ContentDescription" />
 
-        <ImageView
-            android:id="@+id/feedback"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@+id/logout"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:src="@drawable/ic_feedback"
-            tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/tv_my_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="@string/my_account"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_18"
+                tools:ignore="RelativeOverlap" />
 
-        <ImageView
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:src="@drawable/ic_logout"
-            tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_toStartOf="@+id/logout"
+                android:src="@drawable/ic_feedback"
+                tools:ignore="ContentDescription" />
 
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:src="@drawable/ic_logout"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
@@ -90,7 +91,8 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dp_12"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="RelativeOverlap">
 
             <TextView
                 android:id="@+id/tv_name"
@@ -148,7 +150,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/home" />
+                    android:src="@drawable/home"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -175,7 +178,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/spotlight" />
+                    android:src="@drawable/spotlight"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -202,7 +206,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/categories" />
+                    android:src="@drawable/categories"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -229,10 +234,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/empty_wishlist" />
+                    android:src="@drawable/empty_wishlist"
+                    tools:ignore="ContentDescription" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
-
 </LinearLayout>
