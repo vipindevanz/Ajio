@@ -45,7 +45,6 @@ public class CategoryActivity extends AppCompatActivity {
 
     private void initViews() {
 
-        binding.ibBack.setOnClickListener(v -> finish());
         binding.icBack.setOnClickListener(v -> finish());
 
         setAdapter();
