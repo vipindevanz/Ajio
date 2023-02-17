@@ -21,9 +21,9 @@
         android:layout_height="wrap_content"
         android:text="@string/ins"
         android:textAlignment="center"
-        android:id="@+id/ins"
         android:visibility="gone"
+        android:id="@+id/ins"
         android:layout_below="@+id/ajio"
-        android:textColor="@color/white" />
+        android:textColor="#F0F3F4" />
 
 </RelativeLayout>
