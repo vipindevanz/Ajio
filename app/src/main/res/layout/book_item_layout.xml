@@ -130,9 +130,9 @@
         android:layout_below="@+id/book_desc"
         android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/dp_5"
-        android:backgroundTint="#FF8400"
+        android:backgroundTint="#0088FF"
         android:text="Buy Now"
-        android:textColor="#000" />
+        android:textColor="#FFFFFF" />
 
     <View
         android:layout_width="match_parent"
