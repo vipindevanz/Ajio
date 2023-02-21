@@ -16,7 +16,7 @@
             android:id="@+id/product_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_150"
-            android:background="@color/blue"
+            android:background="@color/purple_500"
             android:scaleType="fitXY"
             tools:ignore="ContentDescription" />
 
