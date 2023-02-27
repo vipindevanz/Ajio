@@ -31,7 +31,6 @@
 
             <include layout="@layout/store_placeholder_layout" />
 
-            <include layout="@layout/store_placeholder_layout" />
 
             <include layout="@layout/store_placeholder_layout" />
 
