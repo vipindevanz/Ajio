@@ -89,7 +89,7 @@
             android:id="@+id/buy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#00FF7B"
+            android:backgroundTint="#02E670"
             android:textColor="#000" />
 
     </LinearLayout>
