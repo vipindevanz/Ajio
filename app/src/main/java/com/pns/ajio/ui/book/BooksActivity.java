@@ -9,19 +9,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.pns.ajio.ui.category.CategoryActivity;
-import com.pns.ajio.databinding.ActivityBooksBinding;
 import com.pns.ajio.data.models.Book;
+import com.pns.ajio.databinding.ActivityBooksBinding;
+import com.pns.ajio.ui.category.CategoryActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,7 +27,6 @@ public class BooksActivity extends AppCompatActivity {
     private BookAdapter adapter;
     private List<Book> mList;
     private ActivityBooksBinding binding;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,31 +35,9 @@ public class BooksActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initViews();
-        loadAd();
     }
 
-    private void loadAd() {
-        MobileAds.initialize(this, initializationStatus -> {});
-        AdRequest adRequest = new AdRequest.Builder().build();
-
-        InterstitialAd.load(this, "ca-app-pub-3177345536292496/4264080119", adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        // The mInterstitialAd reference will be null until
-                        // an ad is loaded.
-                        mInterstitialAd = interstitialAd;
-                        mInterstitialAd.show(BooksActivity.this);
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        mInterstitialAd = null;
-                    }
-                });
-    }
-
-    private void initViews(){
+    private void initViews() {
 
         setList();
 
