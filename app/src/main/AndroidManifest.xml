@@ -14,8 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopKaro"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.admin.AdminActivity"
-            android:exported="false" />
         <activity android:name=".ui.book.BooksActivity"
             android:exported="false" />
         <activity android:name=".ui.product.ProductActivity"
