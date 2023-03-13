@@ -14,7 +14,6 @@ class CategoryRepository(onCategoryDataAdded: OnCategoryDataAdded) {
 
     fun getCategoryList() {
 
-
         val reference = FirebaseDatabase.getInstance().getReference("Category")
         reference.keepSynced(true)
 
